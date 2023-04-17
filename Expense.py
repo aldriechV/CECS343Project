@@ -37,6 +37,15 @@ def add_expense():
         query = "INSERT INTO expenses(payee, cost, date, budget_category) VALUES (%s, %s, %s)"
         cursor.execute(query, (payee, cost, date, budget_category))
         connection.commit()
+        
+@app.route('/delete', methods=['POST'])
+def delete_expense():
+    if request.method == "POST":
+        connection = mysql.get_db()
+        cursor = connection.cursor()
+        delete_query = 'DELETE FROM expenses where id = %s'
+        cursor.execute(delete_query, request.form['id'])
+        connection.commit()
 
 # class RentalIncome(db.Model):
 #     month = db.Column(db.String(20), nullable=False)
