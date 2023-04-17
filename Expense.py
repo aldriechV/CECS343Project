@@ -34,7 +34,7 @@ def add_expense():
 
         connection = mysql.get_db()
         cursor = connection.cursor()
-        query = "INSERT INTO expenses(payee, cost, date, budget_category) VALUES (%s, %s, %s)"
+        query = "INSERT INTO expenses(payee, cost, date, budget_category) VALUES (%s, %s, %s, %s)"
         cursor.execute(query, (payee, cost, date, budget_category))
         connection.commit()
         
